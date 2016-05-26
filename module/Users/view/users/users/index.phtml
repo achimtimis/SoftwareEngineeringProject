@@ -1,0 +1,143 @@
+<div>
+    <?php if ($this->state == 1) { ?>
+        <!-- Admin view -->
+        <p><a class="btn btn-success" href="users/add">Add User &raquo;</a></p>
+        <div class="table-responsive" style="margin-top: 10px">
+            <table class="table table-center table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th style="text-align: center">ID</th>
+                    <th style="text-align: center">NAME</th>
+                    <th style="text-align: center">CATEGORY</th>
+                    <th style="text-align: center"> Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($this->info as $user) {
+                    ?>
+                    <tr>
+                        <td align="center"><?php echo $user['user_id']; ?></td>
+                        <td align="center"><?php echo $user['username']; ?></td>
+                        <td align="center"><?php if ($user['category_id'] == 1) {
+                                echo "Admin";
+                            } else if ($user['category_id'] == 3) {
+                                echo "Student";
+                            } else if ($user['category_id'] == 2) {
+                                echo "Profesor";
+                            }; ?></td>
+                        <td align="center"><a href="<?php echo "users/edit/" . $user['user_id']; ?>">Edit</a> <a
+                                data-toggle="modal" data-target="#myModal" href="#" id="<?php echo $user['user_id']; ?>"
+                                onclick="setId(this.id)">Delete</a></td>
+                    </tr>
+
+
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    <?php } else if ($this->state == 2) { ?>
+        <!-- Profesor view -->
+        <div class="table-responsive">
+            <table class="table table-center table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th style="text-align: center">COURSE NAME</th>
+                    <th style="text-align: center">DISCIPLINE</th>
+                    <th style="text-align: center">DISCIPLINE TYPE</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($this->info as $i) {
+                    ?>
+                    <tr>
+                        <td align="center"><?php echo $i['className']; ?></td>
+                        <td align="center"><?php echo $i['title']; ?></td>
+                        <td align="center"><?php echo $i['type']; ?></td>
+                    </tr>
+
+
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    <?php } else if ($this->state == 3) { ?>
+        <!-- Student view -->
+        <h1>Attended Courses: </h1>
+        <div class="table-responsive">
+            <table class="table table-center table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th style="text-align: center">PROF. NAME</th>
+                    <th style="text-align: center">DISCIPLINE</th>
+                    <th style="text-align: center">DISCIPLINE TYPE</th>
+                    <th style="text-align: center">GRADE</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($this->info as $i) {
+                    ?>
+                    <tr>
+                        <td align="center"><?php echo $i['firstName'] . " " . $i['lastName']; ?></td>
+                        <td align="center"><?php echo $i['title']; ?></td>
+                        <td align="center"><?php echo $i['type']; ?></td>
+                        <td align="center"><?php echo $i['grade']; ?></td>
+                    </tr>
+
+
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+
+    <?php } ?>
+</div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title"><strong>Stergere Utilizator</strong></h3>
+            </div>
+            <div class="modal-body">
+                <p>Doresti sa stergi utilizatorul ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="clickedDelete(this.id)" name="yes" class="btn btn-sm btn-success"
+                        style="font-size:16px !important;" data-dismiss="modal">Da
+                </button>
+                <button type="button" class="btn btn-sm btn-danger" style="font-size:16px !important;"
+                        data-dismiss="modal">Nu
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    function setId(clicked_id){
+        $('[name="yes"]').attr("id",clicked_id);
+    }
+    
+    function clickedDelete(clicked_id) {
+       $.ajax({
+            url: 'users/delete',
+            type: 'POST',
+            dataType: 'json',
+            data: {user_id: clicked_id},
+            success: function (response) {
+                if (response.success) {
+                    window.location.reload();
+                }
+            }
+        });
+    }
+</script>

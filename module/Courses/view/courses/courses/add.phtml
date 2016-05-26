@@ -1,0 +1,112 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Pavlik
+ * Date: 2016-04-22
+ * Time: 18:32
+ */
+$form = $this->form;
+$form->setAttribute('id', 'add_user_admin_form');
+$form->setAttribute('action', $this->url('users', array('action' => 'save')));
+$form->setAttribute('method', 'post');
+$form->setAttribute('class', 'form-horizontal form-bordered');
+$form->setAttribute('autocomplete', 'off');
+echo $this->form()->openTag($form);
+?>
+<p><a style="float:right;" class="btn btn-danger" href="../users">Back</a></p>
+<h1> Add User: </h1>
+<div class="form-group">
+    <div class="col-xs-12">
+        <?php echo $this->formRow($form->get('username')); ?>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-xs-12">
+        <?php echo $this->formRow($form->get('email')); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-xs-12">
+        <?php echo $this->formRow($form->get('password')); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-xs-12">
+        <?php echo $this->formRow($form->get('display_name')); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-xs-12">
+        <?php echo $this->formRow($form->get('state')); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-xs-12">
+        <?php echo $this->formRow($form->get('category_id')); ?>
+    </div>
+</div>
+
+<div id="student_form_div_id" style="display: none;">
+    <h1> Student Info: </h1>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <?php echo $this->formRow($form->get('groupID')); ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <?php echo $this->formRow($form->get('firstNameStudent')); ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <?php echo $this->formRow($form->get('lastNameStudent')); ?>
+        </div>
+    </div>
+</div>
+
+<div id="professor_form_div_id" style="display: none;">
+    <h1> Professor Info: </h1>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <?php echo $this->formRow($form->get('degree')); ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <?php echo $this->formRow($form->get('firstNameProfessor')); ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <?php echo $this->formRow($form->get('lastNameProfessor')); ?>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <div class="col-xs-12">
+        <?php echo $this->formRow($form->get('submit')); ?>
+    </div>
+</div>
+
+
+<?php
+
+echo $this->form()->closeTag($form);
+?>
+
+
+
+<script src="../../js/pages/formUsersAdd.js"></script>
+<script>
+    $(function(){
+        FormUsersAdd.init(); 
+    });
+</script>

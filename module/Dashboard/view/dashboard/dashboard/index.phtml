@@ -1,0 +1,19 @@
+<div>
+    <?php if ($this->state == 1) { ?>
+        <!-- Admin view -->
+        <div class="container">
+            <a href="/users"><img src="/../img/users.png"></a>
+        </div>
+    <?php } else if ($this->state == 2) { ?>
+        <!-- Profesor view -->
+        <div class="container">
+            <a href="/courses"><img src="/../img/prof_courses.png"></a>
+        </div>
+    <?php } else if ($this->state == 3) { ?>
+        <!-- Student view -->
+        <div class="container">
+            <a href="/users"><img src="/../img/courses.png"></a>
+        </div>
+
+    <?php } ?>
+</div>

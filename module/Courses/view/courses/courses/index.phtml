@@ -1,0 +1,55 @@
+<?php if($this->state == 3){?>
+<h1>Attended Courses: </h1>
+<div class="table-responsive">
+    <table class="table table-center table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th style="text-align: center">PROF. NAME</th>
+            <th style="text-align: center">DISCIPLINE</th>
+            <th style="text-align: center">DISCIPLINE TYPE</th>
+            <th style="text-align: center">GRADE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($this->info as $i) {
+            ?>
+            <tr>
+                <td align="center"><?php echo $i['firstName']." ".$i['lastName']; ?></td>
+                <td align="center"><?php echo $i['title']; ?></td>
+                <td align="center"><?php echo $i['type']; ?></td>
+                <td align="center"><?php echo $i['grade']; ?></td>
+            </tr>
+
+
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+<?php } ?>
+<?php if($this->state == 2){?>
+<div class="table-responsive">
+    <table class="table table-center table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th style="text-align: center">COURSE NAME</th>
+            <th style="text-align: center">DISCIPLINE</th>
+            <th style="text-align: center">DISCIPLINE TYPE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($this->info as $i) {
+            ?>
+            <tr>
+                <td align="center"><?php echo $i['className']; ?></td>
+                <td align="center"><?php echo $i['title']; ?></td>
+                <td align="center"><?php echo $i['type']; ?></td>
+            </tr>
+
+
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+<?php } ?>

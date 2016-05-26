@@ -1,0 +1,27 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Pavlik
+ * Date: 2016-04-22
+ * Time: 18:32
+ */
+
+
+$form = $this->form;
+
+$form->setAttribute('id', 'add_user_admin_form');
+$form->setAttribute('action', $this->url('users', array('action' => 'editsave', 'admin_id' => $this->admin_id)));
+$form->setAttribute('method', 'post');
+$form->setAttribute('autocomplete', 'off');
+
+echo $this->form()->openTag($form);
+?>
+
+
+
+<?php
+
+echo $this->form()->closeTag($form);
+?>
+
+
